@@ -1,20 +1,20 @@
+import os
+
 from torch.utils.data import DataLoader, Dataset
 from albumentations import (
     Compose, OneOf, Normalize, Resize, RandomResizedCrop, RandomCrop, HorizontalFlip, VerticalFlip, 
     RandomBrightness, RandomContrast, RandomBrightnessContrast, Rotate, ShiftScaleRotate, Cutout, 
     IAAAdditiveGaussianNoise, Transpose, HueSaturationValue, CoarseDropout
     )
+from albumentations.pytorch import ToTensorV2
+
+import torchvision.transforms as transforms
+import cv2
+from PIL import Image
 
 
-def DiffusionDataset(Dataset):
-    def __init__(self, paths):
-        self.paths = paths
-        self.transform = self.get_transforms()
-
-    def __len__(self, ):
-        return len(self.paths)
-
-    def get_transforms(self):
+def get_transforms(use_transform):
+    if use_transform=="albmentations":
         return Compose([
             Resize(32, 32),
             # RandomResizedCrop(CFG.size, CFG.size, scale=(0.85, 1.0)),
@@ -30,10 +30,33 @@ def DiffusionDataset(Dataset):
             ),
             ToTensorV2(),
         ])
+
+    # if use_transform=="torchvision":
+    #     return transforms.Compose([
+    #         transforms.Resize(32, 32),
+    #         transforms.Normalize(
+    #             mean=[0.485, 0.456, 0.406],
+    #             std=[0.229, 0.224, 0.225],
+    #         ),
+    #         transforms.ToTensor(),
+    #     ])
+
+class DiffusionDataset(Dataset):
+    def __init__(self, paths, use_transform="albmentations"):
+        self.paths = paths
+
+        self.transform = get_transforms(use_transform)
+
+    def __len__(self, ):
+        return len(self.paths)
+
     
     def __getitem__(self, idx):
         file_path = self.paths[idx]
+        
         image = cv2.imread(file_path)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        image = self.transform(image=image)
+        
+        augmented = self.transform(image=image)
+        image = augmented['image']
         return image
