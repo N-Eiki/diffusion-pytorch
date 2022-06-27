@@ -1,7 +1,8 @@
 # we get image data here
 https://veekun.com/
 
-![sample1](./samples1.png, "sample1")
+# below is sample outputs
+![sample1](./samples/samples1.png, "sample1")
 # diffusion-pytorch
 # 参考文献
 
