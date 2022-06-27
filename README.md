@@ -2,9 +2,9 @@
 https://veekun.com/
 
 # below is sample outputs
-<img src="./samples/sample_0.png" width="300px"></img>
-<img src="./samples/sample_1.png" width="300px"></img>
-<img src="./samples/sample_2.png" width="300px"></img>
+<img src="./samples/sample_0.png" width="200px"></img>
+<img src="./samples/sample_1.png" width="200px"></img>
+<img src="./samples/sample_2.png" width="200px"></img>
 <img src="./results/sample-699.png" width="500px"></img>
 
 # diffusion-pytorch
