@@ -2,7 +2,11 @@
 https://veekun.com/
 
 # below is sample outputs
-![sample0](./samples/sample_0.png, "sample0")
+<img src="./samples/sample_0.png" width="500px"></img>
+<img src="./samples/sample_1.png" width="500px"></img>
+<img src="./samples/sample_2.png" width="500px"></img>
+<img src="./results/sample-699.png" width="500px"></img>
+
 # diffusion-pytorch
 # 参考文献
 
