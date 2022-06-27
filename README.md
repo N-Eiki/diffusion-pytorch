@@ -2,7 +2,7 @@
 https://veekun.com/
 
 # below is sample outputs
-![sample1](./samples/samples1.png, "sample1")
+![sample0](./samples/sample_0.png, "sample0")
 # diffusion-pytorch
 # 参考文献
 
